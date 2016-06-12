@@ -1,15 +1,54 @@
 body {
-  background: wheat; }
+  background: #fff;
+  padding: 10px;
+  padding-bottom: 20px;
+  font-size: 12px;
+  font-family: "Roboto Slab", Georgia, Serif;
+  font-weight: 300;
+  line-height: 1.5em;
+  color: #222; }
+
+h1 {
+  text-align: center; }
+
+a {
+  color: #f58324; }
+  a:hover {
+    color: #d26d18; }
 
 .my-process {
-  text-align: center;
   max-width: 900px;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
   margin: 0 auto; }
 
-.description {
+h2,
+.description,
+.result,
+.target-user,
+.timeframe,
+.product-technology {
   max-width: 900px;
-  margin: 0 auto; }
+  margin-left: auto;
+  margin-right: auto; }
+
+.target-user::before,
+.timeframe::before,
+.product-technology::before {
+  color: #aaa; }
+
+.target-user::before {
+  content: "Target User: "; }
+
+.timeframe::before {
+  content: "Timeline: "; }
+
+.product-technology::before {
+  content: "Product Technology: "; }
+
+@media only screen and (min-width: 500px) {
+  body {
+    font-size: 16px;
+    line-height: 1.75em; } }
 
 /*# sourceMappingURL=portfolio.css.map */
