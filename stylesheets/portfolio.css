@@ -8,4 +8,8 @@ body {
   border-bottom: 1px solid grey;
   margin: 0 auto; }
 
+.description {
+  max-width: 900px;
+  margin: 0 auto; }
+
 /*# sourceMappingURL=portfolio.css.map */

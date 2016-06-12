@@ -1,11 +1,18 @@
+$content-width-max: 900px;
+
 body {
 	background: wheat;
 }
 
 .my-process {
 	text-align: center;
-	max-width: 900px;
+	max-width: $content-width-max;
 	border-top: 1px solid grey;
 	border-bottom: 1px solid grey;
+	margin: 0 auto;
+}
+
+.description {
+	max-width: $content-width-max;
 	margin: 0 auto;
 }
