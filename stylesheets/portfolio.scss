@@ -59,6 +59,55 @@ h2,
 	content: "Product Technology: ";
 }
 
+/********************************************
+              Bubble Chart
+********************************************/
+$bubble-blue: #1678D4;
+$bubble-green: #3A9C18;
+$bubble-forestgreen: #50AF76;
+$bubble-purple: #8E34A0;
+$bubble-plum: #DB0067;
+$bubble-red: #E73852;
+$bubble-orange: #F89C27;
+$bubble-pink: #F77D91;
+$bubble-peach: #FEC37C;
+$bubble-cyan: #5FD0FF;
+$bubble-yellowgreen: #B9E270;
+
+.process-chart {
+	position: relative;
+	height: 800px;
+
+	.bubble:nth-child(1)  { top:   0px; left:   0px; background: $bubble-blue; }
+	.bubble:nth-child(2)  { top: 220px; left:  50px; background: $bubble-green; }
+	.bubble:nth-child(3)  { top: 120px; left:  50px; background: $bubble-forestgreen; }
+	.bubble:nth-child(4)  { top: 220px; left: 150px; background: $bubble-purple; }
+	.bubble:nth-child(5)  { top: 320px; left: 250px; background: $bubble-plum; }
+	.bubble:nth-child(6)  { top: 120px; left: 350px; background: $bubble-red; }
+	.bubble:nth-child(7)  { top: 220px; left: 400px; background: $bubble-orange; }
+	.bubble:nth-child(8)  { top: 320px; left: 450px; background: $bubble-pink; }
+	.bubble:nth-child(9)  { top: 200px; left: 500px; background: $bubble-peach; }
+	.bubble:nth-child(10) { top:  50px; left: 700px; background: $bubble-cyan; }
+	.bubble:nth-child(11) { top: 500px; left: 740px; background: $bubble-yellowgreen; }
+}
+
+.bubble {
+	border-radius: 100%;
+	width: 120px;
+	height: 120px;
+	color: white;
+	text-align: center;
+	font-size: 14px;
+	display: inline-flex;
+	padding: 20px;
+	position: absolute;
+
+	span {
+		margin: auto;
+		line-height: 1.5em;
+	}
+}
+
 @media only screen and (min-width: 500px) {
 	body {
 		font-size: 16px;
