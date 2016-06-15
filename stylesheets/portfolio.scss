@@ -1,11 +1,306 @@
+$content-width-max: 900px;
+$caption-title: #aaa;
+$nav-width: 230px;
+
 body {
-	background: wheat;
+	background: #fff;
+	padding: 10px;
+	padding-bottom: 20px;
+	font-size: 12px;
+	font-family: "Roboto Slab", Georgia, Serif;
+	font-weight: 300;
+	line-height: 1.5em;
+	color: #222;
+}
+
+h1 {
+	margin-top: 40px;
+	text-align: center;
+}
+img {
+	width: 100%;
+	height: auto;
+}
+
+figure {
+	margin: 0;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+a,
+.description span,
+.result span {
+	color: #F89C27;
+	cursor: pointer;
+	text-decoration: none;
+
+	&:hover {
+		color: #F89C27;
+	}
 }
 
 .my-process {
-	text-align: center;
-	max-width: 900px;
+	max-width: $content-width-max;
 	border-top: 1px solid grey;
 	border-bottom: 1px solid grey;
 	margin: 0 auto;
+}
+
+.main-content,
+.details-page {
+	max-width: $content-width-max;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.product-technology {
+	margin-bottom: 40px;
+}
+
+.screenshot {
+	max-width: 900px;
+	margin: 0 auto 30px;
+}
+
+figure,
+.target-user::before,
+.timeframe::before,
+.product-technology::before {
+	color: $caption-title;
+}
+
+.target-user::before {
+	content: "Target User: ";
+}
+
+.timeframe::before {
+	content: "Timeline: ";
+}
+
+.product-technology::before {
+	content: "Product Technology: ";
+}
+
+.screenshot-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+
+	.screenshot {
+		margin: 0;
+		max-width: 350px;
+		min-width: 270px;
+	}
+}
+
+.hidden {
+	display: none;
+}
+
+h3 {
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	padding: 5px 0;
+
+	&::after {
+		float: right;
+		font-size: 12px;
+		color: $caption-title;
+		font-weight: 300;
+	}
+}
+
+.webapp::after 	{ content: 'Web App'; }
+.iPad::after 	{ content: 'iPad'; }
+.story::after 	{ content: 'Story'; }
+.ipad-tv::after 		{ content: 'iPad, TV'; }
+.phone::after 	{ content: 'phone'; }
+
+.gallery {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+
+	& > div {
+		width: 280px;
+		padding: 10px 10px 40px;
+		margin-bottom: 20px;
+
+		&:hover {
+			cursor: pointer;
+			background: #efefef;
+		}
+	}
+}
+
+/********************************************
+              Bubble Chart
+********************************************/
+$chart-height: 630px;
+$bubble-diameter: 120px;
+$half-bubble-diameter: 60px;
+
+$bubble-red: #F60022;
+$bubble-plum: #DB0067;
+$bubble-pink: #F5289A;
+$bubble-purple: #B847CA;
+$bubble-blue: #1678D4;
+$bubble-cyan: #5FD0FF;
+$bubble-lightblue: #29B5FF;
+$bubble-forestgreen: #40C3C0;
+$bubble-green: #30D15E;
+$bubble-yellowgreen: #82E928;
+$bubble-orange: #FAB248;
+
+.process-chart {
+	position: relative;
+
+	.bubble:nth-child(1)  { top:    0%; left:  0.0%; background: $bubble-red; }
+	.bubble:nth-child(2)  { top: 70.0%; left:  7.7%; background: $bubble-pink; }
+	.bubble:nth-child(3)  { top: 19.0%; left:  4.4%; background: $bubble-plum; }
+	.bubble:nth-child(4)  { top: 55.1%; left: 16.6%; background: $bubble-purple; }
+	.bubble:nth-child(5)  { top: 13.3%; left: 24.3%; background: $bubble-blue; }
+	.bubble:nth-child(6)  { top:  6.3%; left: 55.5%; background: $bubble-green; }
+	.bubble:nth-child(7)  { top: 30.2%; left: 32.2%; background: $bubble-cyan; }
+	.bubble:nth-child(8)  { top: 53.7%; left: 50.0%; background: $bubble-forestgreen; }
+	.bubble:nth-child(9)  { top: 67.9%; left: 34.1%; background: $bubble-lightblue; }
+	.bubble:nth-child(10) { top:  7.9%; left: 77.7%; background: $bubble-orange; }
+	.bubble:nth-child(11) { top: 33.3%; left: 61.1%; background: $bubble-yellowgreen; }
+
+	.bubble:nth-child(1)  { top:    0%; left:  0.0%; background: $bubble-red; }
+	.bubble:nth-child(3)  { top: 19.0%; left:  2.4%; background: $bubble-plum; }
+	.bubble:nth-child(2)  { top: 50.0%; left:  3.7%; background: $bubble-pink; }
+	.bubble:nth-child(4)  { top: 30.1%; left: 31.6%; background: $bubble-purple; }
+	.bubble:nth-child(5)  { top: 36.3%; left: -5%; background: $bubble-blue; }
+	.bubble:nth-child(7)  { top: 14.5%; left: 42.2%; background: $bubble-cyan; }
+	.bubble:nth-child(9)  { top: 74.9%; left: -6.1%; background: $bubble-lightblue; }
+	.bubble:nth-child(8)  { top: 58.7%; left: 40.0%; background: $bubble-forestgreen; }
+	.bubble:nth-child(6)  { top:  -1.7%; left: calc(100% - 150px); background: $bubble-green; }
+	.bubble:nth-child(11) { top: 42.3%; left: calc(100% - 124px); background: $bubble-yellowgreen; }
+	.bubble:nth-child(10) { top: 74.9%; left: calc(100% - 140px); background: $bubble-orange; }
+	
+}
+
+.bubble {
+	border-radius: 100%;
+	width: 100px;
+	height: 100px;
+	color: white;
+	text-align: center;
+	font-size: 12px;
+	display: inline-flex;
+	padding: 20px;
+	position: absolute;
+
+	span {
+		margin: auto;
+		line-height: 1.5em;
+	}
+}
+
+.timeline {
+	display: flex;
+	padding-top: $chart-height;
+	margin-bottom: 40px;
+
+	div {
+		border-top: 1px solid #ccc;
+		position: relative;
+		color: #ccc;
+		font-size: 12px;
+
+		&::before,
+		&:last-child::after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 1px;
+			height: 5px;
+			background: #ccc;
+		}
+
+		&::after {
+			top: 0;
+			right: 0;
+		}
+	}
+
+	.discover 	{ width: 18%; }
+	.design 	{ width: 20%; }
+	.build		{ width: 48%; }
+	.launch		{ width:  14%; }
+}
+
+@media only screen and (min-width: 585px) {
+	.process-chart {
+		position: relative;
+
+		.bubble:nth-child(1)  { top:    0%; left:  0.0%; background: $bubble-red; }
+		.bubble:nth-child(2)  { top: 70.0%; left:  7.7%; background: $bubble-pink; }
+		.bubble:nth-child(3)  { top: 19.0%; left:  4.4%; background: $bubble-plum; }
+		.bubble:nth-child(4)  { top: 55.1%; left: 16.6%; background: $bubble-purple; }
+		.bubble:nth-child(5)  { top: 13.3%; left: 24.3%; background: $bubble-blue; }
+		.bubble:nth-child(6)  { top:  6.3%; left: 55.5%; background: $bubble-green; }
+		.bubble:nth-child(7)  { top: 30.2%; left: 32.2%; background: $bubble-cyan; }
+		.bubble:nth-child(8)  { top: 53.7%; left: 50.0%; background: $bubble-forestgreen; }
+		.bubble:nth-child(9)  { top: 67.9%; left: 34.1%; background: $bubble-lightblue; }
+		.bubble:nth-child(10) { top:  7.9%; left: 77.7%; background: $bubble-orange; }
+		.bubble:nth-child(11) { top: 33.3%; left: 61.1%; background: $bubble-yellowgreen; }
+	}
+
+	.timeline {
+		.discover 	{ width: 10%; }
+		.design 	{ width: 20%; }
+		.build		{ width: 62%; }
+		.launch		{ width:  8%; }
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.main-content,
+	.details-page {
+		padding-left: 260px;
+	}
+
+	.nav {
+		width: $nav-width;
+		position: fixed;
+		margin: 40px 0 0 20px;
+		text-indent: 13px;
+		line-height: 3;
+		font-size: 14px;
+	}
+
+	.nav-link:hover,
+	.active-link {
+		cursor: pointer;
+		background: #F89C27;
+		color: white;
+	}
+
+	.child {
+		&:nth-child(1) {
+			margin-top: 10px;
+		}
+
+		&::before {
+			margin-left: 15px;
+			content: '';
+		}
+	}
+
+	
+
+	.bubble {
+		width: 120px;
+		height: 120px;
+	}
+}
+
+@media only screen and (min-width: 500px) {
+	body {
+		font-size: 16px;
+		line-height: 1.75em;
+	}
 }
