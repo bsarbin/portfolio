@@ -1,34 +1,89 @@
 //------------------------------------------------------------
 // Section to load all of the correct detail pages.
 //------------------------------------------------------------
-$("#iwan-ivpn-project").click(function () {
-	$(".details-page").load("pages/iwan-ivpn-project.html");
+$(document).on('click','.my-process-link',function () {
+	loadPage(this, 'my-process');
 });
 
-$("#vbranch-project").click(function () {
-	$(".details-page").load("pages/vbranch-project.html");
+$(document).on('click','.my-work-link',function () {
+	loadPage(this, 'my-work');
 });
 
-$("#cloudvpn-project").click(function () {
-	$(".details-page").load("pages/cloudvpn-project.html");
+$(document).on('click','.iwan-ivpn-project',function (e) {
+	loadPage(this, "iwan-ivpn-project");
 });
 
-$("#oban-project").click(function () {
-	$(".details-page").load("pages/oban-project.html");
+$(document).on('click','.vbranch-project',function () {
+	loadPage(this, "vbranch-project");
 });
 
-$("#clife-project").click(function () {
-	$(".details-page").load("pages/clife-project.html");
+$(document).on('click','.cloudvpn-project',function () {
+	loadPage(this, "cloudvpn-project");
 });
 
-$("#elife-project").click(function () {
-	$(".details-page").load("pages/elife-project.html");
+$(document).on('click','.oban-project',function () {
+	loadPage(this, "oban-project");
 });
 
-$("#olympics-project").click(function () {
-	$(".details-page").load("pages/olympics-project.html");
+$(document).on('click','.clife-project',function () {
+	loadPage(this, "clife-project");
 });
 
-$("#mobile-project").click(function () {
-	$(".details-page").load("pages/mobile-project.html");
+$(document).on('click','.elife-project',function () {
+	loadPage(this, "elife-project");
+});
+
+$(document).on('click','.olympics-project',function () {
+	loadPage(this, "olympics-project");
+});
+
+$(document).on('click','.mobile-project',function () {
+	loadPage(this, "mobile-project");
+});
+
+function loadPage(element, url, isBrowserBack) {
+	var activeLink = '.' + url;
+
+	if (url == null) {
+		showContent();
+		$('.my-process').addClass('active-link');
+		$(window).scrollTop(0);
+		activeLink = '.my-process-link';
+	}
+	else if (url == 'my-process') {
+		showContent();
+		$(window).scrollTop($(".my-process").position().top);
+		activeLink = '.my-process-link';
+	}
+	else if (url == 'my-work') {
+		showContent();
+		$(window).scrollTop($(".my-work").position().top);
+		activeLink = '.my-work-link';
+	}
+	else {
+		$(".details-page").load('pages/' + url + '.html');
+		hideContent();
+		$(window).scrollTop(0);
+	}
+
+	$('.active-link').removeClass('active-link');
+	$(activeLink).addClass('active-link');
+
+	if (!isBrowserBack) {
+		history.pushState(url, null, null);
+	}
+}
+
+function hideContent() {
+	$('.main-content').addClass('hidden');
+	$('.details-page').removeClass('hidden');
+}
+
+function showContent() {
+	$('.main-content').removeClass('hidden');
+	$('.details-page').addClass('hidden');
+}
+
+window.addEventListener('popstate', function(e){
+	loadPage(null, e.state, true);
 });
