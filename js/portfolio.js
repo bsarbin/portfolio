@@ -72,6 +72,10 @@ function loadPage(element, url, isBrowserBack) {
 	if (!isBrowserBack) {
 		history.pushState(url, null, null);
 	}
+
+	if ($(window).width() < 900) {
+		hideMenu();
+	}
 }
 
 function hideContent() {
@@ -84,6 +88,30 @@ function showContent() {
 	$('.details-page').addClass('hidden');
 }
 
+function hideMenu() {
+	$('.overlay-layer').removeClass('animate-fade-in');
+	$('.nav').removeClass('animate-right');
+	$('.overlay-layer').addClass('animate-fade-out');
+	$('.nav').addClass('animate-left');
+}
+
+function showMenu() {
+	$('.overlay-layer').removeClass('animate-fade-out');
+	$('.nav').removeClass('animate-left');
+	$('.overlay-layer').addClass('animate-fade-in');
+	$('.nav').addClass('animate-right');
+}
+
 window.addEventListener('popstate', function(e){
 	loadPage(null, e.state, true);
+});
+
+
+//Buttons to show and hide the navigation in small window mode
+$(document).on('click', '.overlay-layer', function () {
+	hideMenu();
+});
+
+$(document).on('click', '.show-menu', function () {
+	showMenu();
 });

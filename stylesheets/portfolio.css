@@ -16,10 +16,16 @@ img {
   width: 100%;
   height: auto; }
 
+.button {
+  cursor: pointer; }
+
 figure {
   margin: 0;
   font-size: 12px;
   line-height: 1.5; }
+
+li {
+  list-style: none; }
 
 a,
 .description span,
@@ -31,6 +37,10 @@ a,
   .description span:hover,
   .result span:hover {
     color: #F89C27; }
+
+.cover-photo {
+  border-radius: 50%;
+  max-width: 40%; }
 
 .my-process {
   max-width: 900px;
@@ -52,19 +62,41 @@ a,
   margin: 0 auto 30px; }
 
 figure,
+.project-type::before,
+.design-challenge::before,
+.value-props::before,
 .target-user::before,
 .timeframe::before,
-.product-technology::before {
+.product-technology::before,
+.description.first::before {
   color: #aaa; }
+
+.value-props {
+  padding-bottom: 30px; }
+  .value-props div {
+    margin-bottom: 5px; }
+
+.project-type::before {
+  content: "Project: "; }
+
+.design-challenge::before {
+  content: "Design Goals: "; }
+
+.value-props::before {
+  content: "Design Value Props: "; }
 
 .target-user::before {
   content: "Target User: "; }
 
 .timeframe::before {
-  content: "Timeline: "; }
+  content: "Timeframe: "; }
 
 .product-technology::before {
   content: "Product Technology: "; }
+
+.description.first::before {
+  content: "Summary: ";
+  display: block; }
 
 .screenshot-container {
   display: flex;
@@ -251,6 +283,69 @@ h3 {
   .timeline .launch {
     width: 14%; }
 
+.nav {
+  width: 230px;
+  position: fixed;
+  text-indent: 13px;
+  line-height: 3;
+  font-size: 14px;
+  background: white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 400;
+  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4); }
+
+.nav-link:hover,
+.active-link {
+  cursor: pointer;
+  background: #F89C27;
+  color: white; }
+
+.child:nth-child(1) {
+  margin-top: 10px; }
+.child::before {
+  margin-left: 15px;
+  content: ''; }
+
+.overlay-layer {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 399; }
+
+.show-menu {
+  width: 40px;
+  height: 40px;
+  background: lightgray; }
+  .show-menu:hover {
+    background: gray; }
+
+.animate-fade-out {
+  opacity: 0;
+  transition: 0.3s opacity;
+  pointer-events: none; }
+
+.animate-left {
+  transform: translateX(-230px);
+  box-shadow: 0 0 0 transparent;
+  transition: 0.3s all;
+  pointer-events: none; }
+
+.animate-fade-in {
+  opacity: 1;
+  transition: 0.3s opacity;
+  pointer-events: auto; }
+
+.animate-right {
+  transform: translateX(0px);
+  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4);
+  transition: 0.3s all;
+  pointer-events: auto; }
+
 @media only screen and (min-width: 585px) {
   .process-chart {
     position: relative; }
@@ -313,28 +408,21 @@ h3 {
     padding-left: 260px; }
 
   .nav {
-    width: 230px;
-    position: fixed;
     margin: 40px 0 0 20px;
-    text-indent: 13px;
-    line-height: 3;
-    font-size: 14px; }
+    background: transparent;
+    box-shadow: 0 0 0 transparent;
+    transform: translateX(0); }
 
-  .nav-link:hover,
-  .active-link {
-    cursor: pointer;
-    background: #F89C27;
-    color: white; }
-
-  .child:nth-child(1) {
-    margin-top: 10px; }
-  .child::before {
-    margin-left: 15px;
-    content: ''; }
+  .value-props {
+    padding-bottom: 50px; }
 
   .bubble {
     width: 120px;
-    height: 120px; } }
+    height: 120px; }
+
+  .show-menu,
+  .overlay-layer {
+    display: none; } }
 @media only screen and (min-width: 500px) {
   body {
     font-size: 16px;
