@@ -1,6 +1,5 @@
 body {
   background: #fff;
-  padding: 10px;
   padding-bottom: 20px;
   font-size: 12px;
   font-family: "Roboto Slab", Georgia, Serif;
@@ -9,8 +8,21 @@ body {
   color: #222; }
 
 h1 {
-  margin-top: 40px;
-  text-align: center; }
+  margin: 40px auto 20px;
+  padding-bottom: 7px;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+  width: 60%;
+  position: relative; }
+  h1::after {
+    content: '';
+    position: absolute;
+    background: lightgray;
+    width: 5px;
+    height: 5px;
+    bottom: -3px;
+    left: calc(50% - 2.5px);
+    border-radius: 50%; }
 
 img {
   width: 100%;
@@ -18,6 +30,10 @@ img {
 
 .button {
   cursor: pointer; }
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4; }
 
 figure {
   margin: 0;
@@ -38,15 +54,20 @@ a,
   .result span:hover {
     color: #F89C27; }
 
-.cover-photo {
+title {
+  font-size: 6em;
+  line-height: 1;
+  font-weight: 500;
+  color: #64A2A8;
+  display: block; }
+
+.cover-photo,
+.nav-photo {
   border-radius: 50%;
   max-width: 40%; }
 
-.my-process {
-  max-width: 900px;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  margin: 0 auto; }
+.nav-photo {
+  margin-top: 50px; }
 
 .main-content,
 .details-page {
@@ -112,7 +133,6 @@ figure,
 
 h3 {
   border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
   padding: 5px 0; }
   h3::after {
     float: right;
@@ -146,6 +166,268 @@ h3 {
     .gallery > div:hover {
       cursor: pointer;
       background: #efefef; }
+
+/********************************************
+               Title & About
+********************************************/
+.title-area {
+  height: 90vh;
+  top: 0;
+  left: 0;
+  max-width: 900px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  color: #83BDAD;
+  padding: 0 10px; }
+  .title-area::before {
+    content: '';
+    width: 100vw;
+    height: 90vh;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background: #DFEAE6;
+    z-index: -1; }
+
+/********************************************
+                  Top Nav
+********************************************/
+.top-nav {
+  position: fixed;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  top: 0;
+  z-index: 1;
+  background: white;
+  width: 100%;
+  height: 42px;
+  transform: translateY(-42px);
+  transition: 0.3s transform;
+  opacity: 0.9; }
+  .top-nav a {
+    color: #222; }
+  .top-nav .links {
+    display: flex;
+    align-items: center;
+    padding-right: 0px; }
+    .top-nav .links .work-button,
+    .top-nav .links .process,
+    .top-nav .links .about,
+    .top-nav .links .contact {
+      padding: 7px 10px;
+      cursor: pointer; }
+      .top-nav .links .work-button:hover,
+      .top-nav .links .process:hover,
+      .top-nav .links .about:hover,
+      .top-nav .links .contact:hover {
+        text-decoration: underline; }
+    .top-nav .links .work {
+      display: flex;
+      align-items: center; }
+  .top-nav.awake {
+    transform: translateY(0); }
+  .top-nav.on-main-header {
+    background: #DFEAE6;
+    color: #64A2A8; }
+    .top-nav.on-main-header a {
+      color: #64A2A8; }
+  .top-nav .brand {
+    padding: 7px 10px; }
+    .top-nav .brand:hover {
+      text-decoration: underline; }
+    .top-nav .brand span {
+      display: none; }
+
+.work .left-arrow,
+.work .right-arrow {
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  display: block;
+  position: relative; }
+  .work .left-arrow:hover::after,
+  .work .right-arrow:hover::after {
+    content: '';
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    top: 3px;
+    left: 3px;
+    border-radius: 4px;
+    border: 1px solid #222; }
+  .work .left-arrow::before,
+  .work .right-arrow::before {
+    position: relative;
+    top: 7px;
+    left: 12px;
+    content: "";
+    display: inline-block;
+    /* By using an em scale, the arrows will size with the font */
+    width: 0.7em;
+    height: 0.7em;
+    border-right: 0.1em solid black;
+    border-top: 0.1em solid black;
+    transform: rotate(45deg);
+    margin-right: 0.5em; }
+.work .left-arrow::before {
+  top: 6px;
+  left: 17px;
+  transform: rotate(-135deg); }
+.work .left-arrow,
+.work .right-arrow {
+  display: none; }
+
+.project-page .left-arrow,
+.project-page .right-arrow {
+  display: block; }
+.project-page ~ .main-content {
+  display: none; }
+.project-page ~ .details-page {
+  display: block; }
+
+.main-content {
+  display: block; }
+
+.details-page {
+  padding-top: 44px;
+  display: none; }
+
+.material-icons {
+  vertical-align: text-bottom;
+  float: left;
+  margin-right: 5px; }
+
+/********************************************
+                About Page
+********************************************/
+.about-page {
+  /*position: fixed;
+  top: $header-size;
+  right: 0;
+  width: 320px;*/
+  z-index: 3;
+  padding: 30px 0px 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.5s max-height ease; }
+  .about-page p {
+    transition: 0.3s transform, 0.3s opacity ease;
+    transform: translateX(320px);
+    opacity: 0; }
+    .about-page p:nth-child(5) {
+      transition-delay: 0.00s; }
+    .about-page p:nth-child(4) {
+      transition-delay: 0.05s; }
+    .about-page p:nth-child(3) {
+      transition-delay: 0.10s; }
+    .about-page p:nth-child(2) {
+      transition-delay: 0.15s; }
+    .about-page p:nth-child(1) {
+      transition-delay: 0.20s; }
+  .about-page.open-about {
+    max-height: 300px; }
+    .about-page.open-about p {
+      opacity: 1;
+      transform: translateX(0);
+      margin: 10px 0 0; }
+      .about-page.open-about p:nth-child(1) {
+        transition-delay: 0.00s; }
+      .about-page.open-about p:nth-child(2) {
+        transition-delay: 0.05s; }
+      .about-page.open-about p:nth-child(3) {
+        transition-delay: 0.10s; }
+      .about-page.open-about p:nth-child(4) {
+        transition-delay: 0.15s; }
+      .about-page.open-about p:nth-child(5) {
+        transition-delay: 0.20s; }
+
+.about-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: visible; }
+
+/********************************************
+                Navigation
+********************************************/
+.nav {
+  width: 230px;
+  position: fixed;
+  text-indent: 13px;
+  line-height: 3;
+  font-size: 14px;
+  background: white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 2;
+  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4);
+  transform: translateX(-230px);
+  box-shadow: 0 0 0 transparent; }
+
+.nav-link:hover,
+.active-link {
+  cursor: pointer;
+  background: #F89C27;
+  color: white; }
+
+.child:nth-child(1) {
+  margin-top: 10px; }
+.child::before {
+  margin-left: 15px;
+  content: ''; }
+
+.overlay-layer {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0; }
+
+.nav-header {
+  z-index: 3;
+  position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid gray;
+  height: 44px;
+  width: 100%;
+  top: 0;
+  left: 0; }
+  .nav-header .show-menu {
+    width: 44px;
+    height: 44px;
+    margin-left: 15px;
+    outline: none; }
+
+.animate-fade-out {
+  opacity: 0;
+  transition: 0.3s opacity;
+  pointer-events: none; }
+
+.animate-left {
+  transform: translateX(-230px);
+  box-shadow: 0 0 0 transparent;
+  transition: 0.3s all;
+  pointer-events: none; }
+
+.animate-fade-in {
+  opacity: 1;
+  transition: 0.3s opacity;
+  pointer-events: auto; }
+
+.animate-right {
+  transform: translateX(0px);
+  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4);
+  transition: 0.3s all;
+  pointer-events: auto; }
 
 /********************************************
               Bubble Chart
@@ -234,7 +516,7 @@ h3 {
     background: #30D15E; }
   .process-chart .bubble:nth-child(11) {
     top: 42.3%;
-    left: calc(100% - 124px);
+    left: calc(100% - 140px);
     background: #82E928; }
   .process-chart .bubble:nth-child(10) {
     top: 74.9%;
@@ -282,69 +564,6 @@ h3 {
     width: 48%; }
   .timeline .launch {
     width: 14%; }
-
-.nav {
-  width: 230px;
-  position: fixed;
-  text-indent: 13px;
-  line-height: 3;
-  font-size: 14px;
-  background: white;
-  top: 0;
-  left: 0;
-  height: 100%;
-  z-index: 400;
-  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4); }
-
-.nav-link:hover,
-.active-link {
-  cursor: pointer;
-  background: #F89C27;
-  color: white; }
-
-.child:nth-child(1) {
-  margin-top: 10px; }
-.child::before {
-  margin-left: 15px;
-  content: ''; }
-
-.overlay-layer {
-  background: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 399; }
-
-.show-menu {
-  width: 40px;
-  height: 40px;
-  background: lightgray; }
-  .show-menu:hover {
-    background: gray; }
-
-.animate-fade-out {
-  opacity: 0;
-  transition: 0.3s opacity;
-  pointer-events: none; }
-
-.animate-left {
-  transform: translateX(-230px);
-  box-shadow: 0 0 0 transparent;
-  transition: 0.3s all;
-  pointer-events: none; }
-
-.animate-fade-in {
-  opacity: 1;
-  transition: 0.3s opacity;
-  pointer-events: auto; }
-
-.animate-right {
-  transform: translateX(0px);
-  box-shadow: 2px 0 30px rgba(0, 0, 0, 0.4);
-  transition: 0.3s all;
-  pointer-events: auto; }
 
 @media only screen and (min-width: 585px) {
   .process-chart {
@@ -403,15 +622,12 @@ h3 {
   .timeline .launch {
     width: 8%; } }
 @media only screen and (min-width: 900px) {
-  .main-content,
-  .details-page {
-    padding-left: 260px; }
-
   .nav {
     margin: 40px 0 0 20px;
     background: transparent;
     box-shadow: 0 0 0 transparent;
-    transform: translateX(0); }
+    transform: translateX(0);
+    transition: 0s all; }
 
   .value-props {
     padding-bottom: 50px; }
@@ -420,12 +636,23 @@ h3 {
     width: 120px;
     height: 120px; }
 
-  .show-menu,
-  .overlay-layer {
-    display: none; } }
+  .overlay-layer,
+  .nav-header {
+    display: none; }
+
+  .title-area {
+    padding: 0; } }
+@media only screen and (min-width: 520px) {
+  .top-nav .brand {
+    padding-left: 27px; }
+  .top-nav .links {
+    padding-right: 20px; } }
 @media only screen and (min-width: 500px) {
   body {
     font-size: 16px;
-    line-height: 1.75em; } }
+    line-height: 1.75em; }
+
+  .top-nav .brand span {
+    display: inline-block; } }
 
 /*# sourceMappingURL=portfolio.css.map */
