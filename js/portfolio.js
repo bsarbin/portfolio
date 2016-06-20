@@ -45,11 +45,16 @@ $(document).on('click','.mobile-project',function () {
 	loadPage(this, "mobile-project");
 });
 
+//Opens the about page
 $(document).on('click', '.about', function() {
-	$('.about-page').addClass('open-about');
-	$('.about-overlay').removeClass('hidden');
+	loadPage(this, 'about-page');
+	setTimeout(function() {
+		$('.about-page').addClass('open-about');
+		$('.about-overlay').removeClass('hidden');
+	},1);
 })
 
+//Closes the about page
 $(document).on('click', '.about-overlay', function() {
 	$('.about-page').removeClass('open-about');
 	$('.about-overlay').addClass('hidden');
@@ -90,7 +95,7 @@ function loadPage(element, url, isBrowserBack) {
 		showContent();
 		activeLink = '.home-link';
 		url = 'home-link';
-		$(window.scrollTop(0));
+		$(window).scrollTop(0);
 	}
 	else if (url == 'my-process') {
 		showContent();
@@ -98,10 +103,19 @@ function loadPage(element, url, isBrowserBack) {
 		url = 'my-process-link';
 		$(window).scrollTop($('.my-process').offset().top);
 	}
+	else if (url =='about-page') {
+		showContent();
+		activeLink = '.about-link';
+		url = 'about-link'
+		$(window).scrollTop(0);
+	}
 	else {
 		$(".details-page").load('pages/' + url + '.html');
 		hideContent();
 	}
+
+	//I ran into a weird bug where offset wasn't set, so I have this simple condition to fail gracefully
+	checkScrollHeaderColorClass( ($(window).offset() ? $(window).offset().top : 0));
 
 	if (url == 'iwan-ivpn-project') { $('.left-arrow').addClass('disabled'); $('.right-arrow').removeClass('disabled'); }
 	else if (url == 'mobile-project') { $('.right-arrow').addClass('disabled'); $('.left-arrow').removeClass('disabled'); }
@@ -140,7 +154,6 @@ function showMenu() {
 }
 
 window.onpopstate = function(e) {
-	console.log('e: ' + e.state);
 	loadPage(null, e.state, true);
 };
 
@@ -184,11 +197,15 @@ $(window).scroll(function (event) {
    $('.about-overlay').addClass('hidden');
 
 
-   //Color the header if it's on the main title
-   if (!($('.top-nav').hasClass('project-page')) && st < $(window).height()*0.9 - $('.top-nav').height()) {	//Using 90% of the window height because the cover page is 90vh.
+   checkScrollHeaderColorClass(st);
+});
+
+function checkScrollHeaderColorClass(scrollPosition) {
+	 //Color the header if it's on the main title
+   if (!($('.top-nav').hasClass('project-page')) && scrollPosition < $(window).height()*0.9 - $('.top-nav').height()) {	//Using 90% of the window height because the cover page is 90vh.
 		$('.top-nav').addClass('on-main-header'); 
    }
    else { 
    	$('.top-nav').removeClass('on-main-header'); 
-   }   
-});
+   }  
+}

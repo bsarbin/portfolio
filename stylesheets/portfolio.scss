@@ -69,7 +69,7 @@ a,
 }
 
 title {
-	font-size: 6em;
+	font-size: 5em;
 	line-height: 1;
 	font-weight: 500;
 	color: #64A2A8;
@@ -96,6 +96,14 @@ title {
 	max-width: $content-width-max;
 	margin-left: auto;
 	margin-right: auto;
+
+	h2,
+	p,
+	figure,
+	.value-props {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 
 .product-technology {
@@ -238,7 +246,7 @@ h3 {
 	.links {
 		display: flex;
 		align-items: center;
-		padding-right: 0px;
+		padding-right: 10px;
 
 		.work-button,
 		.process,
@@ -252,9 +260,14 @@ h3 {
 			}
 		}
 
+		.work-button {
+			padding: 7px 0;
+		}
+
 		.work {
 			display: flex;
 			align-items: center;
+			order: 99;
 		}
 	}
 
@@ -282,6 +295,10 @@ h3 {
 			display: none;
 		}
 	}
+
+	.process {
+		display: none;
+	}
 }
 
 .work {
@@ -308,8 +325,8 @@ h3 {
 
 		&::before {
 			position: relative;
-		    top: 7px;
-		    left: 12px;
+		    top: 11px;
+		    left: 14px;
 		    content: "";
 		    display: inline-block;
 		    /* By using an em scale, the arrows will size with the font */
@@ -325,8 +342,7 @@ h3 {
 	}
 
 	.left-arrow::before {
-		top: 6px;
-		left: 17px;
+		left: 19px;
 		transform: rotate(-135deg);
 	}
 
@@ -658,6 +674,15 @@ $bubble-orange: #FAB248;
 		transition: 0s all;
 	}
 
+	.top-nav {
+		.brand {
+			padding-left: 27px;
+		}
+		.links {
+			padding-right: 20px;
+		}
+	}
+
 	.value-props {
 		padding-bottom: 50px;
 	}
@@ -677,14 +702,13 @@ $bubble-orange: #FAB248;
 	}
 }
 
-@media only screen and (min-width: 520px) {
-	.top-nav {
-		.brand {
-			padding-left: 27px;
-		}
-		.links {
-			padding-right: 20px;
-		}
+@media only screen and (min-width: 535px) {
+	.top-nav .process {
+		display: block;
+	}
+
+	.top-nav .links .work {
+		order: 0;
 	}
 }
 
@@ -694,7 +718,26 @@ $bubble-orange: #FAB248;
 		line-height: 1.75em;
 	}
 
-	.top-nav .brand span {
-		display: inline-block;
+	.top-nav {
+
+		.brand span {
+			display: inline-block;
+		}
+
+		.work-button {
+			padding: 7px 10px;
+		}
+	}
+
+	.work {
+		.left-arrow::before {
+			top: 7px;
+			left: 17px;
+		}
+
+		.right-arrow::before {
+			top: 7px;
+			left: 12px;
+		}
 	}
 }

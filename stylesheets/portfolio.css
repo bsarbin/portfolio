@@ -55,7 +55,7 @@ a,
     color: #F89C27; }
 
 title {
-  font-size: 6em;
+  font-size: 5em;
   line-height: 1;
   font-weight: 500;
   color: #64A2A8;
@@ -74,6 +74,16 @@ title {
   max-width: 900px;
   margin-left: auto;
   margin-right: auto; }
+  .main-content h2,
+  .main-content p,
+  .main-content figure,
+  .main-content .value-props,
+  .details-page h2,
+  .details-page p,
+  .details-page figure,
+  .details-page .value-props {
+    padding-left: 10px;
+    padding-right: 10px; }
 
 .product-technology {
   margin-bottom: 40px; }
@@ -211,7 +221,7 @@ h3 {
   .top-nav .links {
     display: flex;
     align-items: center;
-    padding-right: 0px; }
+    padding-right: 10px; }
     .top-nav .links .work-button,
     .top-nav .links .process,
     .top-nav .links .about,
@@ -223,9 +233,12 @@ h3 {
       .top-nav .links .about:hover,
       .top-nav .links .contact:hover {
         text-decoration: underline; }
+    .top-nav .links .work-button {
+      padding: 7px 0; }
     .top-nav .links .work {
       display: flex;
-      align-items: center; }
+      align-items: center;
+      order: 99; }
   .top-nav.awake {
     transform: translateY(0); }
   .top-nav.on-main-header {
@@ -239,6 +252,8 @@ h3 {
       text-decoration: underline; }
     .top-nav .brand span {
       display: none; }
+  .top-nav .process {
+    display: none; }
 
 .work .left-arrow,
 .work .right-arrow {
@@ -260,8 +275,8 @@ h3 {
   .work .left-arrow::before,
   .work .right-arrow::before {
     position: relative;
-    top: 7px;
-    left: 12px;
+    top: 11px;
+    left: 14px;
     content: "";
     display: inline-block;
     /* By using an em scale, the arrows will size with the font */
@@ -272,8 +287,7 @@ h3 {
     transform: rotate(45deg);
     margin-right: 0.5em; }
 .work .left-arrow::before {
-  top: 6px;
-  left: 17px;
+  left: 19px;
   transform: rotate(-135deg); }
 .work .left-arrow,
 .work .right-arrow {
@@ -629,6 +643,11 @@ h3 {
     transform: translateX(0);
     transition: 0s all; }
 
+  .top-nav .brand {
+    padding-left: 27px; }
+  .top-nav .links {
+    padding-right: 20px; }
+
   .value-props {
     padding-bottom: 50px; }
 
@@ -642,17 +661,27 @@ h3 {
 
   .title-area {
     padding: 0; } }
-@media only screen and (min-width: 520px) {
-  .top-nav .brand {
-    padding-left: 27px; }
-  .top-nav .links {
-    padding-right: 20px; } }
+@media only screen and (min-width: 535px) {
+  .top-nav .process {
+    display: block; }
+
+  .top-nav .links .work {
+    order: 0; } }
 @media only screen and (min-width: 500px) {
   body {
     font-size: 16px;
     line-height: 1.75em; }
 
   .top-nav .brand span {
-    display: inline-block; } }
+    display: inline-block; }
+  .top-nav .work-button {
+    padding: 7px 10px; }
+
+  .work .left-arrow::before {
+    top: 7px;
+    left: 17px; }
+  .work .right-arrow::before {
+    top: 7px;
+    left: 12px; } }
 
 /*# sourceMappingURL=portfolio.css.map */
