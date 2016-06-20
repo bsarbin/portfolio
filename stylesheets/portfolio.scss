@@ -1,10 +1,10 @@
 $content-width-max: 900px;
 $caption-title: #aaa;
 $nav-width: 230px;
+$header-size: 42px;
 
 body {
 	background: #fff;
-	padding: 10px;
 	padding-bottom: 20px;
 	font-size: 12px;
 	font-family: "Roboto Slab", Georgia, Serif;
@@ -14,18 +14,46 @@ body {
 }
 
 h1 {
-	margin-top: 40px;
+	margin: 40px auto 20px;
+	padding-bottom: 7px;
 	text-align: center;
+	border-bottom: 1px solid lightgray;
+	width: 60%;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		background: lightgray;
+		width: 5px;
+		height: 5px;
+		bottom: -3px;
+		left: calc(50% - 2.5px);
+		border-radius: 50%;
+	}
 }
 img {
 	width: 100%;
 	height: auto;
 }
 
+.button {
+	cursor: pointer;
+}
+
+.disabled {
+	pointer-events: none;
+	opacity: 0.4;
+}
+
 figure {
 	margin: 0;
 	font-size: 12px;
 	line-height: 1.5;
+}
+
+li {
+	list-style: none;
 }
 
 a,
@@ -40,11 +68,27 @@ a,
 	}
 }
 
-.my-process {
-	max-width: $content-width-max;
-	border-top: 1px solid grey;
-	border-bottom: 1px solid grey;
-	margin: 0 auto;
+title {
+	font-size: 5em;
+	line-height: 1;
+	font-weight: 500;
+	color: #64A2A8;
+	display: block;
+}
+
+.cover-photo,
+.nav-photo {
+	border-radius: 50%;
+	max-width: 40%;
+}
+
+.nav-photo {
+	margin-top: 50px;
+}
+
+.my-work {
+	//border-top: 1px solid grey;
+	//border-bottom: 1px solid grey;
 }
 
 .main-content,
@@ -52,6 +96,14 @@ a,
 	max-width: $content-width-max;
 	margin-left: auto;
 	margin-right: auto;
+
+	h2,
+	p,
+	figure,
+	.value-props {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 
 .product-technology {
@@ -64,23 +116,31 @@ a,
 }
 
 figure,
+.project-type::before,
+.design-challenge::before,
+.value-props::before,
 .target-user::before,
 .timeframe::before,
-.product-technology::before {
+.product-technology::before,
+.description.first::before {
 	color: $caption-title;
 }
 
-.target-user::before {
-	content: "Target User: ";
+.value-props {
+	padding-bottom: 30px;
+
+	div {
+		margin-bottom: 5px;
+	}
 }
 
-.timeframe::before {
-	content: "Timeline: ";
-}
-
-.product-technology::before {
-	content: "Product Technology: ";
-}
+.project-type::before 		{ content: "Project: "}
+.design-challenge::before 	{ content: "Design Goals: "}
+.value-props::before 		{ content: "Design Value Props: "}
+.target-user::before 		{ content: "Target User: "; }
+.timeframe::before 			{ content: "Timeframe: "; }
+.product-technology::before { content: "Product Technology: "; }
+.description.first::before 	{ content: "Summary: "; display: block; }
 
 .screenshot-container {
 	display: flex;
@@ -100,7 +160,7 @@ figure,
 
 h3 {
 	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	//border-bottom: 1px solid #ddd;
 	padding: 5px 0;
 
 	&::after {
@@ -133,6 +193,347 @@ h3 {
 		}
 	}
 }
+
+/********************************************
+               Title & About
+********************************************/
+
+.title-area {
+	height: 90vh;
+	top: 0;
+	left: 0;
+	max-width: 900px;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	color: #83BDAD;
+	padding: 0 10px;
+
+	&::before {
+		content: '';
+		width: 100vw;
+		height: 90vh;
+		top: 0;
+		left: 0;
+		position: absolute;
+		background: #DFEAE6;
+		z-index: -1;
+	}
+}
+
+/********************************************
+                  Top Nav
+********************************************/
+
+.top-nav {
+	position: fixed;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	top: 0;
+	z-index: 1;
+	background: white;
+	width: 100%;
+	height: $header-size;
+	transform: translateY(-$header-size);
+	transition: 0.3s transform;
+	opacity: 0.9;
+
+	a {
+		color: #222;
+	}
+
+	.links {
+		display: flex;
+		align-items: center;
+		padding-right: 10px;
+
+		.work-button,
+		.process,
+		.about,
+		.contact {
+			padding: 7px 10px;
+			cursor: pointer;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.work-button {
+			padding: 7px 0;
+		}
+
+		.work {
+			display: flex;
+			align-items: center;
+			order: 99;
+		}
+	}
+
+	&.awake {
+		transform: translateY(0);
+	}
+
+	&.on-main-header,{
+		background: #DFEAE6;
+		color: #64A2A8;
+
+		& a {
+			color: #64A2A8;
+		}
+	}
+
+	.brand {
+		padding: 7px 10px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		span {
+			display: none;
+		}
+	}
+
+	.process {
+		display: none;
+	}
+}
+
+.work {
+	.left-arrow,
+	.right-arrow {
+		cursor: pointer;
+		width: $header-size;
+		height: $header-size;
+		display: block;
+		position: relative;
+
+		&:hover {
+			&::after {
+				content: '';
+				position: absolute;
+				width: 34px;
+				height: 34px;
+				top: 3px;
+				left: 3px;
+				border-radius: 4px;
+				border: 1px solid #222;
+			}
+		}
+
+		&::before {
+			position: relative;
+		    top: 11px;
+		    left: 14px;
+		    content: "";
+		    display: inline-block;
+		    /* By using an em scale, the arrows will size with the font */
+		    width: 0.7em;
+		    height: 0.7em;
+		    border-right: 0.1em solid black;
+		    border-top: 0.1em solid black;
+		    transform: rotate(45deg);
+		    margin-right: 0.5em;
+		}
+
+
+	}
+
+	.left-arrow::before {
+		left: 19px;
+		transform: rotate(-135deg);
+	}
+
+	.left-arrow,
+	.right-arrow {
+		display: none;
+	}
+}
+
+.project-page {
+	.left-arrow,
+	.right-arrow {
+		display: block;
+	}
+
+	& ~ .main-content {
+		display: none;
+	}
+
+	& ~ .details-page {
+		display: block;
+	}
+}
+
+.main-content {
+	display: block;
+}
+
+.details-page {
+	padding-top: 44px;
+	display: none;
+}
+
+.material-icons {
+	vertical-align: text-bottom;
+	float: left;
+	margin-right: 5px;
+}
+
+/********************************************
+                About Page
+********************************************/
+
+.about-page {
+	/*position: fixed;
+	top: $header-size;
+	right: 0;
+	width: 320px;*/
+	z-index: 3;
+	padding: 30px 0px 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: 0.5s max-height ease;
+
+	p {
+		transition: 0.3s transform, 0.3s opacity ease;
+		transform: translateX(320px);
+		opacity: 0;
+
+		&:nth-child(5) { transition-delay: 0.00s; }
+		&:nth-child(4) { transition-delay: 0.05s; }
+		&:nth-child(3) { transition-delay: 0.10s; }
+		&:nth-child(2) { transition-delay: 0.15s; }
+		&:nth-child(1) { transition-delay: 0.20s; }
+	}
+
+	&.open-about {
+		max-height: 300px;
+
+		p {
+			opacity: 1;
+			transform: translateX(0);
+			margin: 10px 0 0;
+
+			&:nth-child(1) { transition-delay: 0.00s; }
+			&:nth-child(2) { transition-delay: 0.05s; }
+			&:nth-child(3) { transition-delay: 0.10s; }
+			&:nth-child(4) { transition-delay: 0.15s; }
+			&:nth-child(5) { transition-delay: 0.20s; }
+		}
+	}
+}
+
+.about-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	pointer-events: visible;
+}
+
+/********************************************
+                Navigation
+********************************************/
+
+.nav {
+	width: $nav-width;
+	position: fixed;
+	text-indent: 13px;
+	line-height: 3;
+	font-size: 14px;
+	background: white;
+	top: 0;
+	left: 0;
+	height: 100%;
+	z-index: 2;
+	box-shadow: 2px 0 30px rgba(0,0,0,0.4);
+	transform: translateX(-230px);
+	box-shadow: 0 0 0 transparent;
+}
+
+.nav-link:hover,
+.active-link {
+	cursor: pointer;
+	background: #F89C27;
+	color: white;
+}
+
+.child {
+	&:nth-child(1) {
+		margin-top: 10px;
+	}
+
+	&::before {
+		margin-left: 15px;
+		content: '';
+	}
+}
+
+.overlay-layer {
+	background: rgba(0,0,0,0.4);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	opacity: 0;
+}
+
+.nav-header {
+	z-index: 3;
+	position: fixed;
+	background: rgba(255,255,255,0.95);
+	border-bottom: 1px solid gray;
+	height: 44px;					//Need to add 44px to .main-content and remove when .nav-header is hidden
+	width: 100%;
+	top: 0;
+	left: 0;
+
+	.show-menu {
+		width: 44px;				//Set to be the same size as .nav-header
+		height: 44px;
+		margin-left: 15px;
+		outline: none;
+
+		&:hover {
+			
+		}
+	}
+
+}
+
+.animate-fade-out {
+	opacity: 0;
+	transition: 0.3s opacity;
+	pointer-events: none;
+}
+
+.animate-left {
+	transform: translateX(-230px);
+	box-shadow: 0 0 0 transparent;
+	transition: 0.3s all;
+	pointer-events: none;
+}
+
+.animate-fade-in {
+	opacity: 1;
+	transition: 0.3s opacity;
+	pointer-events: auto;
+}
+
+.animate-right {
+	transform: translateX(0px);
+	box-shadow: 2px 0 30px rgba(0,0,0,0.4);
+	transition: 0.3s all;
+	pointer-events: auto;
+}
+
 
 /********************************************
               Bubble Chart
@@ -177,7 +578,7 @@ $bubble-orange: #FAB248;
 	.bubble:nth-child(9)  { top: 74.9%; left: -6.1%; background: $bubble-lightblue; }
 	.bubble:nth-child(8)  { top: 58.7%; left: 40.0%; background: $bubble-forestgreen; }
 	.bubble:nth-child(6)  { top:  -1.7%; left: calc(100% - 150px); background: $bubble-green; }
-	.bubble:nth-child(11) { top: 42.3%; left: calc(100% - 124px); background: $bubble-yellowgreen; }
+	.bubble:nth-child(11) { top: 42.3%; left: calc(100% - 140px); background: $bubble-yellowgreen; }
 	.bubble:nth-child(10) { top: 74.9%; left: calc(100% - 140px); background: $bubble-orange; }
 	
 }
@@ -232,6 +633,7 @@ $bubble-orange: #FAB248;
 	.launch		{ width:  14%; }
 }
 
+
 @media only screen and (min-width: 585px) {
 	.process-chart {
 		position: relative;
@@ -260,41 +662,53 @@ $bubble-orange: #FAB248;
 @media only screen and (min-width: 900px) {
 	.main-content,
 	.details-page {
-		padding-left: 260px;
+		//padding-left: 260px;
+		//padding-top: 0;
 	}
 
 	.nav {
-		width: $nav-width;
-		position: fixed;
 		margin: 40px 0 0 20px;
-		text-indent: 13px;
-		line-height: 3;
-		font-size: 14px;
+		background: transparent;
+		box-shadow: 0 0 0 transparent;
+		transform: translateX(0);
+		transition: 0s all;
 	}
 
-	.nav-link:hover,
-	.active-link {
-		cursor: pointer;
-		background: #F89C27;
-		color: white;
-	}
-
-	.child {
-		&:nth-child(1) {
-			margin-top: 10px;
+	.top-nav {
+		.brand {
+			padding-left: 27px;
 		}
-
-		&::before {
-			margin-left: 15px;
-			content: '';
+		.links {
+			padding-right: 20px;
 		}
 	}
 
-	
+	.value-props {
+		padding-bottom: 50px;
+	}
 
 	.bubble {
 		width: 120px;
 		height: 120px;
+	}
+
+	.overlay-layer,
+	.nav-header {
+		display: none;
+	}
+
+	.title-area {
+		padding: 0;
+	}
+}
+
+@media only screen and (min-width: 535px) {
+	.top-nav .process {
+		display: block;
+	}
+
+	.top-nav .links .work {
+		order: 0;
 	}
 }
 
@@ -302,5 +716,28 @@ $bubble-orange: #FAB248;
 	body {
 		font-size: 16px;
 		line-height: 1.75em;
+	}
+
+	.top-nav {
+
+		.brand span {
+			display: inline-block;
+		}
+
+		.work-button {
+			padding: 7px 10px;
+		}
+	}
+
+	.work {
+		.left-arrow::before {
+			top: 7px;
+			left: 17px;
+		}
+
+		.right-arrow::before {
+			top: 7px;
+			left: 12px;
+		}
 	}
 }
