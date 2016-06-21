@@ -51,7 +51,7 @@ $(document).on('click', '.about', function() {
 	setTimeout(function() {
 		$('.about-page').addClass('open-about');
 		$('.about-overlay').removeClass('hidden');
-	},1);
+	},5);
 })
 
 //Closes the about page
@@ -66,7 +66,7 @@ $(document).on('click','.right-arrow',function() {
 	else if ($('.details').hasClass('cloudvpn-page')) { loadPage(this,'clife-project'); }
 	else if ($('.details').hasClass('clife-page')) { loadPage(this,'elife-project'); }
 	else if ($('.details').hasClass('elife-page')) { loadPage(this,'olympics-project'); }
-	else if ($('.details').hasClass('olympics-page')) { loadPage(this,'mobile-project'); }
+	//else if ($('.details').hasClass('olympics-page')) { loadPage(this,'mobile-project'); }
 });
 
 $(document).on('click','.left-arrow',function() {
@@ -118,7 +118,7 @@ function loadPage(element, url, isBrowserBack) {
 	checkScrollHeaderColorClass( ($(window).offset() ? $(window).offset().top : 0));
 
 	if (url == 'iwan-ivpn-project') { $('.left-arrow').addClass('disabled'); $('.right-arrow').removeClass('disabled'); }
-	else if (url == 'mobile-project') { $('.right-arrow').addClass('disabled'); $('.left-arrow').removeClass('disabled'); }
+	else if (url == 'olympics-project') { $('.right-arrow').addClass('disabled'); $('.left-arrow').removeClass('disabled'); }
 	else { $('.left-arrow').removeClass('disabled'); $('.right-arrow').removeClass('disabled'); }
 
 	$('.active-link').removeClass('active-link');
